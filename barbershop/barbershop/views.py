@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def barbershop(request):
+    return render(request, 'barbershop/barbershop.html')
