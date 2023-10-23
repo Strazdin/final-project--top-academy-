@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'appointment.apps.AppointmentConfig'
+    'barbershop.apps.BarbershopConfig',
+    'appointment.apps.AppointmentConfig',
 ]
 
 MIDDLEWARE = [
