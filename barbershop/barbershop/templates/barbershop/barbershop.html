@@ -6,5 +6,14 @@
         <p>{{ barber.barber_name }}</p>
         <img src="{{ barber.barber_image.url }}" alt="">
     {% endfor %}
+    <h3>Прайс-лист</h3>
+    <ul>
+    {% for price in price_list %}
+        <li>
+            <p>{{ price.service}} - {{ price.price}} р.</p>
+        </li>
+    {% endfor %}
+    </ul>
+
 
 {% endblock %}
