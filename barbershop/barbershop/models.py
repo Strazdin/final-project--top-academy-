@@ -24,3 +24,11 @@ class Price(models.Model):
         verbose_name = 'Стрижка'
         verbose_name_plural = 'Прайс-лист'
         ordering = ['-price']
+
+class Portfolio(models.Model):
+    portfolio_image = models.ImageField(upload_to='portfolio/images/', verbose_name="Фото работ")
+    barber = models.ForeignKey(Barbers, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Барбер")
+
+    class Meta:
+        verbose_name = 'Фото мастера'
+        verbose_name_plural = 'Фото мастеров'
