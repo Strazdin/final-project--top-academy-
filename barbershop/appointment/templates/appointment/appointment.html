@@ -16,7 +16,14 @@
 
         <p>Выберите парикмахера:</p>
 
-        <input type="text" name="barber">
+        <select name="barber">
+            {% for barber_name in barber_names %}
+            <option value="{{ barber_name }}">
+                {{ barber_name }}
+            </option>
+            {% endfor %}
+        </select>
+
         <button type="submit">Далее</button>
     </form>
     {% endif %}
