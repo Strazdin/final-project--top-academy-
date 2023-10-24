@@ -29,7 +29,9 @@
     {% endif %}
 
     {% if step_2 %}
+    
     <p>Ваш парикмахер: <b>{{ barber }}</b></p>
+
     <form action="{% url 'appointment:thanks_page' %}" method="POST">
         {% csrf_token %}
 
@@ -43,7 +45,7 @@
         </select>
 
         <p>Как будете стричься?</p><br>
-        
+
         <select name="service">
             {% for service in price_list %}
             <option value="{{ service }}">
@@ -57,12 +59,15 @@
 
         <p>Введите ваш номер телефона</p><br>
             <input type="text" value="" name="phone"><br>
-            
+
         <input type="hidden" name="date"
             value="{{ choised_day }}">
 
         <input type="hidden" name="barber"  
-            value="{{ barber }}">    
+            value="{{ barber }}">  
+            
+        <input type="hidden" name="barber_id"  
+            value="{{ barber_id.id }}">  
 
         <div style="float: left;">
             <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>

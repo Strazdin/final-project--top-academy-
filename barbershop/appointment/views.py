@@ -28,10 +28,14 @@ def appointment(request):
         
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
-        appointments = Appointment.objects.filter(day=request.GET.get('date')).all()
-        
+        barber = request.GET.get('barber')
+        appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
+
+        barber_id = Barbers.objects.get(barber_name=barber)
+
         for obj in appointments:
             all_time.remove(obj.time.strftime("%H:%M"))
+
 
         dict_obj = {
             'min_day_value': min_day_value,
@@ -39,11 +43,12 @@ def appointment(request):
             'all_time': all_time,
             'barber_names': barber_names,
             'barber': request.GET.get('barber'),
+            'barber_id': barber_id,
             'price_list': price_list,
             'step_1': False,
             'step_2': True,
             'step': 'Шаг 2',
-            'choised_day': request.GET.get('date')
+            'choised_day': request.GET.get('date'),
             }
         
         return render(request, 'appointment/appointment.html', dict_obj)
@@ -56,13 +61,15 @@ def thanks_page(request):
         service = request.POST['service']
         day = request.POST['date']
         time = request.POST['time']
+        barber_id = request.POST['barber_id']
 
         element = Appointment(name = name,
                         phone = phone,
                         barber = barber,
                         service = service,
                         day = day,
-                        time = time)
+                        time = time,
+                        barber_id = barber_id)
         element.save()
         return render(request, 'appointment/thanks.html', {name: name})
     else:
