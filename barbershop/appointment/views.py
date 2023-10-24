@@ -29,6 +29,7 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
+        # time_user = request.GET.get('time')
         appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
 
         barber_id = Barbers.objects.get(barber_name=barber)
@@ -36,6 +37,13 @@ def appointment(request):
         for obj in appointments:
             all_time.remove(obj.time.strftime("%H:%M"))
 
+        if not all_time:
+            error_switch = True
+            message = 'Парикмахер занят'
+            
+        else:
+            error_switch = False
+            message = 'Данный парикмахер свободен'
 
         dict_obj = {
             'min_day_value': min_day_value,
@@ -49,6 +57,8 @@ def appointment(request):
             'step_2': True,
             'step': 'Шаг 2',
             'choised_day': request.GET.get('date'),
+            'message': message,
+            'error_switch': error_switch
             }
         
         return render(request, 'appointment/appointment.html', dict_obj)

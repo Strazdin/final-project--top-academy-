@@ -29,9 +29,13 @@
     {% endif %}
 
     {% if step_2 %}
-    
-    <p>Ваш парикмахер: <b>{{ barber }}</b></p>
 
+    <p>Ваш парикмахер: <b>{{ barber }}</b></p>
+    <p>{{ message }}</p>
+
+    {% if error_switch %}
+    <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
+    {% else %}
     <form action="{% url 'appointment:thanks_page' %}" method="POST">
         {% csrf_token %}
 
@@ -77,6 +81,6 @@
             <button type="submit">Оставить заявку</button>
         </div>
     </form>
-
+    {% endif %}
     {% endif %}
 {% endblock %}
