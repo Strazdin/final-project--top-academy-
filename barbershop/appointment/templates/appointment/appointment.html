@@ -43,7 +43,14 @@
         </select>
 
         <p>Как будете стричься?</p><br>
-        <input type="text" name="service"> 
+        
+        <select name="service">
+            {% for service in price_list %}
+            <option value="{{ service }}">
+                {{ service }}
+            </option>
+            {% endfor %}
+        </select> 
 
         <p>Введите ваше имя</p><br>
             <input type="text" name="name">       

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Appointment
-from barbershop.models import Barbers
+from barbershop.models import Barbers, Price
 from datetime import datetime, timedelta
 
 def appointment(request):
@@ -14,6 +14,7 @@ def appointment(request):
     max_day_value = max_day_value.strftime("%Y-%m-%d") 
 
     barber_names = Barbers.objects.all()
+    price_list = Price.objects.all()
             
     if request.GET.get('date') is None:
         dict_obj = {
@@ -28,7 +29,7 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         appointments = Appointment.objects.filter(day=request.GET.get('date')).all()
-
+        
         for obj in appointments:
             all_time.remove(obj.time.strftime("%H:%M"))
 
@@ -38,6 +39,7 @@ def appointment(request):
             'all_time': all_time,
             'barber_names': barber_names,
             'barber': request.GET.get('barber'),
+            'price_list': price_list,
             'step_1': False,
             'step_2': True,
             'step': 'Шаг 2',
