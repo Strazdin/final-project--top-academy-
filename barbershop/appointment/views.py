@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Appointment
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def appointment(request):
     all_time = ['08:00', '09:00', '10:00', '11:00',
@@ -9,10 +9,14 @@ def appointment(request):
     
     yesterday = datetime.today()
     min_day_value = yesterday.strftime("%Y-%m-%d")
+    max_day_value = yesterday + timedelta(days=7)
+    max_day_value = max_day_value.strftime("%Y-%m-%d") 
 
+            
     if request.GET.get('date') is None:
         dict_obj = {
             'min_day_value': min_day_value,
+            'max_day_value': max_day_value,
             'all_time': all_time,
             'step_1': True,
             'step': 'Шаг 1'
@@ -27,6 +31,7 @@ def appointment(request):
 
         dict_obj = {
             'min_day_value': min_day_value,
+            'max_day_value': max_day_value,
             'all_time': all_time,
             'barber': request.GET.get('barber'),
             'step_1': False,
