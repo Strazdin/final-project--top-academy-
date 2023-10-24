@@ -29,7 +29,6 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
-        # time_user = request.GET.get('time')
         appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
 
         barber_id = Barbers.objects.get(barber_name=barber)
