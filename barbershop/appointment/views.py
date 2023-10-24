@@ -30,7 +30,7 @@ def appointment(request):
     else:
         barber = request.GET.get('barber')
         
-        appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
+        appointments = Appointment.objects.filter(day=request.GET.get('date'), brbr_id=Barbers.objects.get(barber_name=barber).id).all()
 
         barber_name = Barbers.objects.get(barber_name=barber)
 
@@ -79,7 +79,6 @@ def thanks_page(request):
                         service = service,
                         day = day,
                         time = time,
-                        barber_id = barber_id,
                         brbr_id = barber_id)
         element.save()
         return render(request, 'appointment/thanks.html', {name: name})

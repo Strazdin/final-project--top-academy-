@@ -9,7 +9,6 @@ class Appointment(models.Model):
     service = models.CharField(max_length=250, blank=True, null=True)
     day = models.DateField()
     time = models.TimeField()
-    barber_id = models.IntegerField(default=0, null=True, blank=True)
     brbr = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True)
 
     def __sts__(self):
