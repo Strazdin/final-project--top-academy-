@@ -9,7 +9,7 @@ class Appointment(models.Model):
     service = models.CharField(max_length=250, blank=True, null=True, verbose_name="Услуга")
     day = models.DateField(verbose_name="День")
     time = models.TimeField(verbose_name="Время")
-    brbr = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True)
+    brbr = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True, verbose_name="Барбер")
 
     def __sts__(self):
         return self.name
