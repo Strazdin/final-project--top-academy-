@@ -7,5 +7,9 @@ class BarbersAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'barber_name')
     search_fields = ('id', 'barber_name')
 
+class PriceAdmin(admin.ModelAdmin):
+    list_display = ('service', 'price')
+    search_fields = ('service', 'price')
+
 admin.site.register(Barbers, BarbersAdmin)
-admin.site.register(Price)
+admin.site.register(Price, PriceAdmin)
