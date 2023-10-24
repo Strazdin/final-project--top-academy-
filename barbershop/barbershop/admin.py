@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Barbers, Price
-# Register your models here.
 
 class BarbersAdmin(admin.ModelAdmin):
     list_display = ('id', 'barber_name', 'created')
