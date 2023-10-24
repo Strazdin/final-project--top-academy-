@@ -1,4 +1,63 @@
 {% extends 'barbershop/base.html' %}
+{% load static %}
 {% block content %}
+
     <h3>Записаться к парикмахеру:</h3>
+    <h3>{{ step }}</h3>
+
+    {% if step_1 %}
+
+    <form action="{% url 'appointment:appointment' %}" method="GET">
+        <p>Выберите дату:</p>
+
+        <input type="date" name="date"
+        value={{min_day_value}}
+        min={{min_day_value}} max="2023-10-28">
+
+        <p>Выберите парикмахера:</p>
+
+        <input type="text" name="barber">
+        <button type="submit">Далее</button>
+    </form>
+    {% endif %}
+
+    {% if step_2 %}
+
+    <form action="{% url 'appointment:thanks_page' %}" method="POST">
+        {% csrf_token %}
+
+        <p>Выберите доступное время:</p><br>
+        <select name="time">
+            {% for time in all_time %}
+            <option value="{{ time }}">
+                {{ time }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <p>Как будете стричься?</p><br>
+        <input type="text" name="service"> 
+
+        <p>Введите ваше имя</p><br>
+            <input type="text" name="name">       
+
+        <p>Введите ваш номер телефона</p><br>
+            <input type="text" value="" name="phone"><br>
+            
+        <input type="hidden" name="date"
+            value="{{ choised_day }}">
+
+        <input type="hidden" name="barber"  
+            value="{{ barber }}">    
+
+        <div style="float: left;">
+            <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
+        </div>
+
+        <div style="float: right;">
+            <button type="submit">Оставить заявку</button>
+        </div>
+    </form>
+
+    {% endif %}
 {% endblock %}
