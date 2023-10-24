@@ -10,7 +10,7 @@ class Appointment(models.Model):
     day = models.DateField()
     time = models.TimeField()
     barber_id = models.IntegerField(default=0, null=True, blank=True)
-    # barber = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True)
+    brbr = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True)
 
     def __sts__(self):
         return self.name

@@ -29,9 +29,10 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
+        
         appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
 
-        barber_id = Barbers.objects.get(barber_name=barber)
+        barber_name = Barbers.objects.get(barber_name=barber)
 
         for obj in appointments:
             all_time.remove(obj.time.strftime("%H:%M"))
@@ -50,7 +51,7 @@ def appointment(request):
             'all_time': all_time,
             'barber_names': barber_names,
             'barber': request.GET.get('barber'),
-            'barber_id': barber_id,
+            'barber_name': barber_name,
             'price_list': price_list,
             'step_1': False,
             'step_2': True,
@@ -78,7 +79,8 @@ def thanks_page(request):
                         service = service,
                         day = day,
                         time = time,
-                        barber_id = barber_id)
+                        barber_id = barber_id,
+                        brbr_id = barber_id)
         element.save()
         return render(request, 'appointment/thanks.html', {name: name})
     else:

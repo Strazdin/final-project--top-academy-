@@ -1,7 +1,7 @@
 from django.db import models
 
 class Barbers(models.Model):
-    barber_name = models.CharField(max_length=100)
+    barber_name = models.CharField(max_length=100, db_index=True)
     barber_image = models.ImageField(upload_to='barbers/images/')
     created = models.DateTimeField(auto_now_add=True)
 
