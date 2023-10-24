@@ -30,7 +30,7 @@ def appointment(request):
     else:
         barber = request.GET.get('barber')
         
-        appointments = Appointment.objects.filter(day=request.GET.get('date'), brbr_id=Barbers.objects.get(barber_name=barber).id).all()
+        appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
 
         barber_name = Barbers.objects.get(barber_name=barber)
 
@@ -67,7 +67,6 @@ def thanks_page(request):
     if request.POST:
         name = request.POST['name']
         phone = request.POST['phone']
-        barber = request.POST['barber']
         service = request.POST['service']
         day = request.POST['date']
         time = request.POST['time']
@@ -75,11 +74,10 @@ def thanks_page(request):
 
         element = Appointment(name = name,
                         phone = phone,
-                        barber = barber,
                         service = service,
                         day = day,
                         time = time,
-                        brbr_id = barber_id)
+                        barber_id = barber_id)
         element.save()
         return render(request, 'appointment/thanks.html', {name: name})
     else:
