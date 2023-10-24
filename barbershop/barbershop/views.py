@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Barbers
 
 def barbershop(request):
-    return render(request, 'barbershop/barbershop.html')
+    barbers = Barbers.objects.all()
+    return render(request, 'barbershop/barbershop.html', {'barbers': barbers})
