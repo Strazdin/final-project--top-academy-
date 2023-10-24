@@ -29,7 +29,7 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
-        
+
         appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
 
         barber_name = Barbers.objects.get(barber_name=barber)
@@ -67,17 +67,17 @@ def thanks_page(request):
     if request.POST:
         name = request.POST['name']
         phone = request.POST['phone']
-        service = request.POST['service']
         day = request.POST['date']
         time = request.POST['time']
         barber_id = request.POST['barber_id']
+        service_id = Price.objects.get(service = request.POST['service']).id
 
         element = Appointment(name = name,
                         phone = phone,
-                        service = service,
                         day = day,
                         time = time,
-                        barber_id = barber_id)
+                        barber_id = barber_id,
+                        service_id = service_id)
         element.save()
         return render(request, 'appointment/thanks.html', {name: name})
     else:
