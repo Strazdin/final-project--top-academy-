@@ -29,7 +29,7 @@
     {% endif %}
 
     {% if step_2 %}
-
+    <p>Ваш парикмахер: <b>{{ barber }}</b></p>
     <form action="{% url 'appointment:thanks_page' %}" method="POST">
         {% csrf_token %}
 
