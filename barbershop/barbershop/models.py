@@ -11,6 +11,7 @@ class Barbers(models.Model):
     class Meta:
         verbose_name = 'Барбера'
         verbose_name_plural = 'Барберы'
+        ordering = ['-created']
     
 class Price(models.Model):
     service = models.CharField(max_length=200)
@@ -22,3 +23,4 @@ class Price(models.Model):
     class Meta:
         verbose_name = 'Стрижка'
         verbose_name_plural = 'Прайс-лист'
+        ordering = ['-price']
