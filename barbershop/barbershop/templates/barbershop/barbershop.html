@@ -1,4 +1,10 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
-    <h1>hello!</h1>
+    <h1>BarberShop</h1>
+    <h3>Наши парикмахеры</h3>
+    {% for barber in barbers %}
+        <p>{{ barber.barber_name }}</p>
+        <img src="{{ barber.barber_image.url }}" alt="">
+    {% endfor %}
+
 {% endblock %}
