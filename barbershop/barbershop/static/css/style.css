@@ -29,3 +29,36 @@ body{
     padding: 40px 20px;
     flex: 1 1 auto;
 }
+
+.wrap{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.menu{
+    background: lightyellow;
+    padding: 10px;
+    border-bottom: 6px solid #FFF;
+}
+
+.menu .wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu ul{
+    display: flex;
+    list-style: none;
+    font-size: 20px;
+}
+.menu li{
+    margin-left: 60px;
+}
+.menu a{
+    color: #8c7414;
+    font-weight: bold;
+    text-decoration: none;
+}

@@ -2,23 +2,29 @@
 {% block content %}
     <h1>BarberShop</h1>
     <h3>Наши парикмахеры</h3>
-    {% for barber in barbers %}
+    <section id="our_barbers">
+        {% for barber in barbers %}
         <p>{{ barber.barber_name }}</p>
         <img src="{{ barber.barber_image.url }}" alt="">
     {% endfor %}
-    <h3>Прайс-лист</h3>
-    <ul>
-    {% for price in price_list %}
-        <li>
-            <p>{{ price.service}} - {{ price.price}} р.</p>
-        </li>
-    {% endfor %}
-    </ul>
-    <h3>Наши работы</h3>
+    </section>
+    <section id="price_list">
+        <h3>Прайс-лист</h3>
+        <ul>
+        {% for price in price_list %}
+            <li>
+                <p>{{ price.service}} - {{ price.price}} р.</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    <section id="portfolio">
+        <h3>Наши работы</h3>
+        {% for port in portfolio %}
+            <img src="{{ port.portfolio_image.url }}" alt="">
+            <p>{{ port.barber }}</p>
+        {% endfor %}
+    </section>
 
-    {% for port in portfolio %}
-        <img src="{{ port.portfolio_image.url }}" alt="">
-        <p>{{ port.barber }}</p>
-    {% endfor %}
 
 {% endblock %}
