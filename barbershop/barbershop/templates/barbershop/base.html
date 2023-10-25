@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="menu">
-        <div class="wrap">
-            <ul>
-                <li><a href="{% url 'barbershop:barbershop' %}">Главная</a></li>
-                <li><a href="{% url 'appointment:appointment' %}">Записаться</a></li>
-            </ul>
-        </div>
+    <div class="wrapper">
+        <header class="header">
+            <div class="menu">
+                <div class="wrap">
+                    <ul>
+                        <li><a href="{% url 'barbershop:barbershop' %}">Главная</a></li>
+                        <li><a href="{% url 'appointment:appointment' %}">Записаться</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer class="footer">FOOTER</footer>
     </div>
-    {% block content %}
-    {% endblock %}
 </body>
 </html>
