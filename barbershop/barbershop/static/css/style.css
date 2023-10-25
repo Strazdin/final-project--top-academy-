@@ -65,7 +65,9 @@
     padding-bottom: 80px; 
       
 } 
-
+#banner-container a{
+    margin-bottom: 40px;
+}
 /* barbers  */
 #banner-row img{ 
     border-radius: 5px;
