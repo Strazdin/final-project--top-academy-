@@ -78,3 +78,19 @@ body{
 .thumb {
     padding: 5px;
 }
+
+/* .................... */
+ /* barbers  */
+#banner-row img{ 
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+} 
+/* barbers  */
+#banner-row h3, p{ 
+    padding-left: 20px; 
+    padding-top: 2px;
+    padding-bottom: 20px; 
+    text-align: center; 
+} 

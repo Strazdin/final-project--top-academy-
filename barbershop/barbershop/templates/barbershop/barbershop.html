@@ -1,14 +1,27 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
 
-<h1>BarberShop</h1>
-<h3>Наши парикмахеры</h3>
-    <section id="our_barbers">
-        {% for barber in barbers %}
-        <p>{{ barber.barber_name }}</p>
-        <img src="{{ barber.barber_image.url }}" alt="">
-    {% endfor %}
-    </section>
+    <h1>BarberShop</h1>
+    <section id="service"> 
+        <h1 class="text-center">Наши Барберы</h1> 
+        <div class="container-fluid" id="service-container"> 
+            <div class="row" id="banner-row">
+                {% for barber in barbers %}
+
+                <div class="col-lg-6 col-md-12"> 
+                    <img
+                    src="{{ barber.barber_image.url }}"
+                    class="img-fluid rounded mx-auto d-block"
+                    alt="..."
+                    /> 
+                    <h3>{{ barber.barber_name }}</h3> 
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section> 
+    <hr /> 
+
     <section id="price_list">
         <h3>Прайс-лист</h3>
         <ul>
@@ -19,21 +32,13 @@
         {% endfor %}
         </ul>
     </section>
-<!--     <section id="portfolio">
-        <h3>Наши работы</h3>
-        {% for port in portfolio %}
-            <img src="{{ port.portfolio_image.url }}" alt="">
-            <p>{{ port.barber }}</p>
-        {% endfor %}
-    </section> -->
-    {% for port in portfolio %}
-    <p>{{port.id}}</p>
-    {% endfor %}
+    <hr /> 
+
     <div class="container">
         <h1 class="h3 text-center my-4">
         <section id="portfolio">
             <h3>Наши работы</h3>
-            <div class="row">
+            <div class="row" class="barbers">
                 {% for port in portfolio %}
                 <div class="col-lg-3 col-md-4 col-6 thumb">
                     <a data-fancybox="gallery" href="../../../media/portfolio/images/{{port.end_photo_title}}.jpg">
@@ -45,5 +50,6 @@
         </section>
     </div>
 {% endblock %}
+
 
 
