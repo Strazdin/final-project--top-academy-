@@ -36,7 +36,7 @@
             <div class="row">
                 {% for port in portfolio %}
                 <div class="col-lg-3 col-md-4 col-6 thumb">
-                    <a data-fancybox="gallery" href="../../../media/portfolio/images/big_{{port.id}}.jpg">
+                    <a data-fancybox="gallery" href="../../../media/portfolio/images/{{port.end_photo_title}}.jpg">
                         <img class="img-fluid" src="{{ port.image_small.url }}" alt="">
                     </a>    
                 </div>
