@@ -26,7 +26,9 @@
             <p>{{ port.barber }}</p>
         {% endfor %}
     </section> -->
-
+    {% for port in portfolio %}
+    <p>{{port.id}}</p>
+    {% endfor %}
     <div class="container">
         <h1 class="h3 text-center my-4">
         <section id="portfolio">
@@ -34,8 +36,8 @@
             <div class="row">
                 {% for port in portfolio %}
                 <div class="col-lg-3 col-md-4 col-6 thumb">
-                    <a data-fancybox="gallery" href="../../../media/portfolio/images/i.jpg">
-                        <img class="img-fluid" src="{{ port.portfolio_image.url }}" alt="">
+                    <a data-fancybox="gallery" href="../../../media/portfolio/images/big_{{port.id}}.jpg">
+                        <img class="img-fluid" src="{{ port.image_small.url }}" alt="">
                     </a>    
                 </div>
                 {% endfor %}

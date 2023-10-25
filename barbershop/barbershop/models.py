@@ -26,7 +26,9 @@ class Price(models.Model):
         ordering = ['-price']
 
 class Portfolio(models.Model):
-    portfolio_image = models.ImageField(upload_to='portfolio/images/', verbose_name="Фото работ")
+    image_small = models.ImageField(upload_to='portfolio/images/', blank=True, null=True, verbose_name="Фото маленькое")
+    image_big = models.ImageField(upload_to='portfolio/images/', blank=True, null=True, verbose_name="Фото большое")
+    end_photo_title = models.CharField(max_length=200, blank=True, null=True, verbose_name="Конец названия фото")
     barber = models.ForeignKey(Barbers, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Барбер")
 
     class Meta:

@@ -11,8 +11,8 @@ class PriceAdmin(admin.ModelAdmin):
     search_fields = ('service', 'price')
 
 class PorfolioAdmin(admin.ModelAdmin):
-    list_display = ('portfolio_image', 'barber')
-    list_display_links = ('barber',)
+    list_display = ('image_small', 'image_big', 'end_photo_title', 'barber')
+    list_display_links = ('barber', 'end_photo_title')
     list_filter = ('barber',)
 
 admin.site.register(Barbers, BarbersAdmin)
