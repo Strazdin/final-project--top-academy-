@@ -1,5 +1,80 @@
 {% load static %}
-<div class="menu">
+<section id="navbar"> 
+    <nav class="navbar navbar-expand-lg navbar-light"> 
+      <div class="container-fluid"> 
+        <a class="navbar-brand" href="#"> 
+            BarberShop 
+          </a> 
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        > 
+          <span class="navbar-toggler-icon"></span> 
+        </button> 
+        <div class="collapse navbar-collapse" 
+             id="navbarSupportedContent"> 
+          <ul class="navbar-nav m-auto"> 
+            <li class="nav-item"> 
+              <a class="nav-link active" 
+                 aria-current="page" 
+                 href="{% url 'barbershop:barbershop' %}">Главная</a> 
+            </li> 
+            <li class="nav-item"> 
+              <a class="nav-link" 
+                 href="{% url 'appointment:appointment' %}">Записаться</a> 
+            </li> 
+            <li class="nav-item"> 
+              <a class="nav-link" 
+                 href="#">Барберы</a> 
+            </li> 
+            <li class="nav-item"> 
+              <a class="nav-link" 
+                 href="#">Прайс</a> 
+            </li> 
+            <li class="nav-item"> 
+              <a class="nav-link" 
+                 href="#">Наши работы</a> 
+            </li> 
+          </ul> 
+        </div> 
+      </div> 
+    </nav> 
+</section> 
+<!-- banner -->
+<section id="banner"> 
+    <div class="container-fluid" id="banner-container"> 
+        <div class="row" id="banner-row"> 
+        <div class="col-md-6" id="banner-col"> 
+            <h3> 
+                ВСЕ АКТУАЛЬНЫЕ МУЖСКИЕ СТРИЖКИ В ЦЕНТРЕ ГОРОДА 
+            </h3> 
+            
+            <p> 
+                «BarberShop» – стрижем и бреем
+            </p> 
+
+            <div class="d-grid gap-2 d-md-flex justify-content-center"> 
+            <a class="btn btn-primary" 
+                href="{% url 'appointment:appointment' %}" 
+                role="button">Записаться</a> 
+            </div> 
+        </div> 
+        <div class="col-md-6" id="banner-col2"> 
+            <img
+            class="img-responsive rounded mx-auto d-block"
+            src="../../static/barbershop/logo.jpg"
+            alt=""
+            /> 
+        </div> 
+        </div> 
+    </div> 
+    </section>
+<!-- <div class="menu">
     <div class="wrap">
         <ul>
             <li><a href="{% url 'barbershop:barbershop' %}">Главная</a></li>
@@ -9,4 +84,4 @@
             <li><a href="#portfolio">Наши работы</a></li>
         </ul>
     </div>
-</div>
+</div> -->
