@@ -178,11 +178,14 @@
 #product-col2 ul{
     list-style-type: none;
     padding-top: 10px; 
+    height: 200px;
+    overflow-y: scroll;
 } 
   
 #product-col2 ul li{ 
-    padding: 1px; 
+    padding: 7px;
 }
+
 /* portfopio */
 
 #portfolio{
@@ -221,4 +224,5 @@
 .mb-3{ 
   padding-top: 10px; 
 }
+
 
