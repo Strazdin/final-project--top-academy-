@@ -153,6 +153,16 @@
 #banner-col{ 
     padding-left: 20px; 
 } 
+/* service */
+#service{ 
+    padding-top: 80px; 
+    padding-bottom: 80px; 
+} 
+  
+#service h1{ 
+    padding-bottom: 70px; 
+} 
+  
   
 /* price-list */
   
@@ -173,4 +183,20 @@
 #product-col2 ul li{ 
     padding: 1px; 
 } 
+ 
   
+/* footer */
+  
+#footer-col2 a{ 
+    text-decoration: none;
+    color: white !important; 
+    background-color: #0a193d  !important; 
+}
+
+.mb-3{ 
+  padding-top: 10px; 
+}
+
+
+
+ 

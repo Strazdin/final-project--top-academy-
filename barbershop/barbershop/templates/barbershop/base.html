@@ -16,17 +16,13 @@
     <title>BarberShop</title>
 </head>
 <body>
-<div class="wrapper">
-    <header class="header">
-        {% include 'barbershop/navbar.html' %}
-    </header>
 
-<main class="main">
+{% include 'barbershop/navbar.html' %}
+
     {% block content %}
     {% endblock %}
-</main>
-<footer class="footer">FOOTER</footer>
-</div>
+
+{% include 'barbershop/footer.html' %}
 <!-- jQuery -->
 <script src="../../static/js/jquery-3.2.1.min.js"></script>
 <!-- Popper -->
