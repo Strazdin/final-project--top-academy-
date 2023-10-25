@@ -28,7 +28,7 @@
         <div class="col-md-6" id="about-col"> 
           <img
             class="img-responsive rounded mx-auto d-block"
-            src="../../static/barbershop/logo.jpg"
+            src="../../static/barbershop/price.jpg"
             alt=""
           /> 
         </div> 
@@ -47,22 +47,12 @@
     </div> 
 </section> 
 
-<!--     <section id="price_list">
-        <h3>Прайс-лист</h3>
-        <ul>
-        {% for price in price_list %}
-            <li>
-                <p>{{ price.service}} - {{ price.price}} р.</p>
-            </li>
-        {% endfor %}
-        </ul>
-    </section> -->
-    <hr />
+<hr />
 <!-- portfolio -->
 <section id="portfolio">
     <div class="container">
         <h1 class="h3 text-center my-4">
-            <h3>Наши работы</h3>
+            <h1 class="text-center">Наши работы</h1> 
             <div class="row">
                 {% for port in portfolio %}
                 <div class="col-lg-3 col-md-4 col-6 thumb">
@@ -74,6 +64,39 @@
             </div>
     </div>
 </section>
+<hr />
+<!-- about -->
+<section id="about"> 
+    <h1 class="text-center">О нас</h1> 
+    <div class="container-fluid" id="about-container"> 
+      <div class="row" id="banner-row"> 
+        <div class="col-md-6" id="about-col"> 
+          <h3>Почему клиенты выбирают нас</h3> 
+          <ul> 
+            <li> 
+                Профессиональные мастера
+            </li> 
+            <li>
+                Удобное местоположение
+            </li> 
+            <li> 
+                Простая и быстрая онлайн-запись 
+            </li> 
+            <li>
+                Качественный сервис
+            </li> 
+          </ul> 
+        </div> 
+        <div class="col-md-6" id="banner-col2"> 
+          <img
+            class="img-responsive rounded mx-auto d-block"
+            src="../../static/barbershop/salon2.jpg"
+            alt=""
+          /> 
+        </div> 
+      </div> 
+    </div> 
+</section> 
 {% endblock %}
 
 
