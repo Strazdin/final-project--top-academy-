@@ -141,3 +141,36 @@
     padding-bottom: 20px; 
     text-align: center; 
 }
+  
+#banner-row a{ 
+    background-color: white !important; 
+    color: black !important; 
+    border: none; 
+    margin-left: 20px; 
+    margin-top: 20px; 
+      
+} 
+#banner-col{ 
+    padding-left: 20px; 
+} 
+  
+/* price-list */
+  
+#price{ 
+    padding-top: 80px; 
+    padding-bottom: 80px; 
+} 
+  
+#price h1{ 
+    padding-bottom: 70px; 
+} 
+  
+#product-col2 ul{
+    list-style-type: none;
+    padding-top: 10px; 
+} 
+  
+#product-col2 ul li{ 
+    padding: 1px; 
+} 
+  

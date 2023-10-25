@@ -1,28 +1,53 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
 
-    <h1>BarberShop</h1>
-    <section id="service"> 
-        <h1 class="text-center">Наши Барберы</h1> 
-        <div class="container-fluid" id="service-container"> 
-            <div class="row" id="banner-row">
-                {% for barber in barbers %}
+<section id="barbers"> 
+    <h1 class="text-center">Наши Барберы</h1> 
+    <div class="container-fluid" id="service-container"> 
+        <div class="row" id="banner-row">
+            {% for barber in barbers %}
 
-                <div class="col-lg-6 col-md-12"> 
-                    <img
-                    src="{{ barber.barber_image.url }}"
-                    class="img-fluid rounded mx-auto d-block"
-                    alt="..."
-                    /> 
-                    <h3>{{ barber.barber_name }}</h3> 
-                </div>
-                {% endfor %}
+            <div class="col-lg-6 col-md-12"> 
+                <img
+                src="{{ barber.barber_image.url }}"
+                class="img-fluid rounded mx-auto d-block"
+                alt="..."
+                /> 
+                <h3>{{ barber.barber_name }}</h3> 
             </div>
+            {% endfor %}
         </div>
-    </section> 
-    <hr /> 
+    </div>
+</section> 
+<hr /> 
+<!-- price-list --> 
+<section id="price"> 
+    <h1 class="text-center">Прайс-лист</h1> 
+    <div class="container-fluid" id="product-container"> 
+      <div class="row" id="banner-row"> 
+        <div class="col-md-6" id="about-col"> 
+          <img
+            class="img-responsive rounded mx-auto d-block"
+            src="../../static/barbershop/logo.jpg"
+            alt=""
+          /> 
+        </div> 
+        <div class="col-lg-6 col-md-12" id="product-col2"> 
+          <h3>Услуга - цена</h3> 
 
-    <section id="price_list">
+          <ul>
+            {% for price in price_list %}
+                <li>
+                    <p>{{ price.service}} - {{ price.price}}₽</p>
+                </li>
+            {% endfor %}
+            </ul>
+        </div> 
+      </div> 
+    </div> 
+</section> 
+
+<!--     <section id="price_list">
         <h3>Прайс-лист</h3>
         <ul>
         {% for price in price_list %}
@@ -31,12 +56,12 @@
             </li>
         {% endfor %}
         </ul>
-    </section>
+    </section> -->
     <hr />
-
+<!-- portfolio -->
+<section id="portfolio">
     <div class="container">
         <h1 class="h3 text-center my-4">
-        <section id="portfolio">
             <h3>Наши работы</h3>
             <div class="row">
                 {% for port in portfolio %}
@@ -47,8 +72,8 @@
                 </div>
                 {% endfor %}
             </div>
-        </section>
     </div>
+</section>
 {% endblock %}
 
 
