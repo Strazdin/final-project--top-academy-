@@ -12,7 +12,6 @@ def appointment(request):
     min_day_value = yesterday.strftime("%Y-%m-%d")
     max_day_value = yesterday + timedelta(days=7)
     max_day_value = max_day_value.strftime("%Y-%m-%d") 
-    print(min_day_value)
     barber_names = Barbers.objects.all()
     price_list = Price.objects.all()
             
@@ -23,6 +22,7 @@ def appointment(request):
             'all_time': all_time,
             'barber_names': barber_names,
             'step_1': True,
+            'step_2': False,
             'step': 'Шаг 1'
             }
         
@@ -39,11 +39,11 @@ def appointment(request):
 
         if not all_time:
             error_switch = True
-            message = 'Парикмахер занят'
+            message = 'Занят'
             
         else:
             error_switch = False
-            message = 'Данный парикмахер свободен'
+            message = 'Свободен'
 
         dict_obj = {
             'min_day_value': min_day_value,

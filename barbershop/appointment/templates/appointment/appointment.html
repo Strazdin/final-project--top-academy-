@@ -12,106 +12,129 @@
     <title>BarberShop-Appointment</title>
 </head>
 <body>
-    <a href="{% url 'barbershop:barbershop' %}">Главная</a>
-    <h3>Записаться к парикмахеру:</h3>
-    <h3>{{ step }}</h3>
-
-    {% if step_1 %}
-    <form class="row g-3">
-        <div class="col-md-4">
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="barber">
-                <option selected>Выберите парикмахера</option>
-                {% for barber_name in barber_names %}
-                <option value="{{ barber_name }}">{{ barber_name }}</option>
-                {% endfor %}
-              </select>
+    <div class="container">
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="../../static/barbershop/logo.jpg" alt="логотип BarberShop" width="290" height="">
+          <h1 class="h2">Запись к барберу</h1>
         </div>
-        <p>Выберите дату:</p>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <input type="hidden" name="date" id="airdatepicker" class="form-control">
-            </div>
-        </div>
-        <button type="submit">Далее</button>
-    </form>
-
-
-<!--     <form action="{% url 'appointment:appointment' %}" method="GET">
-        <p>Выберите дату:</p>
-
-        <input type="date" name="date"
-        value={{min_day_value}}
-        min={{min_day_value}} max="{{max_day_value}}">
-
-        <p>Выберите парикмахера:</p>
-
-        <select name="barber">
-            {% for barber_name in barber_names %}
-            <option value="{{ barber_name }}">
-                {{ barber_name }}
-            </option>
-            {% endfor %}
-        </select>
-
-        <button type="submit">Далее</button>
-    </form> -->
-    {% endif %}
-
-    {% if step_2 %}
-
-    <p>Ваш парикмахер: <b>{{ barber }}</b></p>
-    <p>{{ message }}</p>
-
-    {% if error_switch %}
-    <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
-    {% else %}
-    <form action="{% url 'appointment:thanks_page' %}" method="POST">
-        {% csrf_token %}
-
-        <p>Выберите доступное время:</p><br>
-        <select name="time">
-            {% for time in all_time %}
-            <option value="{{ time }}">
-                {{ time }}
-            </option>
-            {% endfor %}
-        </select>
-
-        <p>Как будете стричься?</p><br>
-
-        <select name="service">
+    <div class="row g-3">
+        {% if step_2 %}
+        <!-- price list -->
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Прайс-лист</span>
+          </h4>
+          <ul class="list-group mb-3">
             {% for service in price_list %}
-            <option value="{{ service }}">
-                {{ service }}
-            </option>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">{{ service.service }}</h6>
+              </div>
+              <span class="text-muted">{{ service.price }}₽</span>
+            </li>
             {% endfor %}
-        </select> 
-
-        <p>Введите ваше имя</p><br>
-            <input type="text" name="name">       
-
-        <p>Введите ваш номер телефона</p><br>
-            <input type="text" value="" name="phone"><br>
-
-        <input type="hidden" name="date"
-            value="{{ choised_day }}">
-
-        <input type="hidden" name="barber"  
-            value="{{ barber }}">  
-            
-        <input type="hidden" name="barber_id"  
-            value="{{ barber_name.id }}">
-        
-        <div style="float: left;">
-            <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
+          </ul>
         </div>
+        {% endif %}
+        <!-- ЗАПИСАТЬСЯ -->
+        <div class="col-md-7 col-lg-8">
+            <div class="row g-3">
+                
+              {% if step_1 %}
+              <form>
+              <div class="col-md-7">
+                <label for="country" class="form-label">Выберите барбера</label>
+                <select class="form-select" id="barber" name="barber">
+                  <option value="">...</option>
+                  {% for barber_name in barber_names %}
+                  <option value="{{ barber_name }}">{{ barber_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+    
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Когда Вас ждать?</label>
+                <input type="hidden" class="form-control" name="date" id="airdatepicker">
+              </div>
 
-        <div style="float: right;">
-            <button type="submit">Оставить заявку</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Далее</button>
+            </form>
+              {% endif %}
+
+              {% if step_2 %}
+              <h4 class="mb-3">Ваш барбер: <b>{{ barber }}</b> ({{ message }})</h4>
+              {% if error_switch %}
+              <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
+              {% else %}
+              <form action="{% url 'appointment:thanks_page' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-md-7">
+                    <label for="country" class="form-label">Выберите доступное время</label>
+                    <select class="form-select" id="time" name="time">
+                      <option value=""></option>
+                      {% for time in all_time %}
+                      <option value="{{ time }}">{{ time }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                <div class="col-md-7">
+                    <label for="country" class="form-label">Как будете стричься?</label>
+                    <select class="form-select" id="service-appointment" name="service">
+                      <option value="">...</option>
+                      {% for service in price_list %}
+                      <option value="{{ service }}">{{ service }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                
+                <div class="col-12">
+                    <label for="username" class="form-label">Введите ваше имя</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="client-name" placeholder="Ваше имя" name="name">
+                </div>
+              </div>
+
+              <div class="col-12">
+                    <label for="username" class="form-label">Введите ваш номер телефона</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
+                </div>
+              </div>
+
+                <input type="hidden" name="date"
+                    value="{{ choised_day }}">
+  
+                <input type="hidden" name="barber"  
+                    value="{{ barber }}">  
+              
+                <input type="hidden" name="barber_id"  
+                    value="{{ barber_name.id }}">
+
+                <a href="{% url 'appointment:appointment' %}">
+                    Выбрать другую дату
+                </a>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Оставить заявку</button>
+            </form>
+            {% endif %}
+            {% endif %}
+            </div>
+            <hr class="my-4">
         </div>
-    </form>
-    {% endif %}
-    {% endif %}
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small" id="footer-appointment">
+        <p class="mb-1">© 2000–2023 BarberShop</p>
+        <ul class="list-inline">
+
+
+          <li class="list-inline-item"><a href="{% url 'barbershop:barbershop' %}">BarberShop</a></li>
+          <li class="list-inline-item"><a class="telephone" href="tel:8 777 777 77 77">Позвонить</a></li>
+          <li class="list-inline-item"><a class="email" href="http://127.0.0.1:8000">Написать</a></li>
+        </ul>
+      </footer>
+    </div>
+
     <script src="{% static 'js/air-datepicker.js' %}"></script>
     <script>
         let minDate = "{{ min_day_value }}"; 
@@ -127,7 +150,8 @@
             // dateFormat: 'dd.mm.yyyy',
             dateFormat: 'yyyy-MM-dd',
         });
-    </script>  
+    </script>
+
 </body>
 </html>
 

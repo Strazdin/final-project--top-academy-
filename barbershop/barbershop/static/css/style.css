@@ -58,7 +58,7 @@
 /* banner */
   
 #banner-container{ 
-    background-color: #0a193d; 
+    background-color: #0a193d;
     color: white !important; 
     padding-top: 80px; 
     padding-bottom: 80px; 
@@ -127,7 +127,19 @@
 #product-col2 ul li{ 
     padding: 7px;
 }
+/* ......... */
 
+#appointment-step1{
+    padding-top: 80px; 
+    padding-bottom: 80px;
+}
+
+#step1-col{
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+/* ......... */
 /* portfopio */
 
 #portfolio{
@@ -167,4 +179,10 @@
   padding-top: 10px; 
 }
 
+/* #service-appointment{
+    padding: 0;
+} */
 
+#footer-appointment a{
+    text-decoration: none;
+}
