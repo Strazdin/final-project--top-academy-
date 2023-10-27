@@ -12,15 +12,20 @@
     <title>BarberShop-Appointment</title>
 </head>
 <body>
-    <div class="container">
-        <div class="py-5 text-center">
-          <img class="d-block mx-auto mb-4" src="../../static/barbershop/logo.jpg" alt="логотип BarberShop" width="290" height="">
+    <div class="container" id="appointment-container">
+        <div class="py-3 text-center">
           <h1 class="h2">Запись к барберу</h1>
         </div>
-    <div class="row g-3">
+    <div class="row g-3" id="appointment-content">
+        {% if step_1 %}
+        <div class="col-md-5 col-lg-4 order-md-last" id="appointment-baner">
+            <img class="d-block mx-auto mb-4" src="../../static/barbershop/logo.jpg" alt="логотип BarberShop" width="290" height="">
+        </div>
+        {% endif %}   
+
         {% if step_2 %}
         <!-- price list -->
-        <div class="col-md-5 col-lg-4 order-md-last">
+        <div class="col-md-5 col-lg-4 order-md-last" id="product-col3">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Прайс-лист</span>
           </h4>
@@ -28,7 +33,7 @@
             {% for service in price_list %}
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
-                <h6 class="my-0">{{ service.service }}</h6>
+                <h6 class="my-1">{{ service.service }}</h6>
               </div>
               <span class="text-muted">{{ service.price }}₽</span>
             </li>
@@ -37,14 +42,14 @@
         </div>
         {% endif %}
         <!-- ЗАПИСАТЬСЯ -->
-        <div class="col-md-7 col-lg-8">
+        <div class="col-md-7 col-lg-8" id="appointment">
             <div class="row g-3">
                 
               {% if step_1 %}
               <form>
               <div class="col-md-7">
                 <label for="country" class="form-label">Выберите барбера</label>
-                <select class="form-select" id="barber" name="barber">
+                <select class="form-select" id="appointment-barber" name="barber">
                   <option value="">...</option>
                   {% for barber_name in barber_names %}
                   <option value="{{ barber_name }}">{{ barber_name }}</option>
@@ -53,16 +58,22 @@
               </div>
     
               <div class="col-sm-6">
-                <label for="lastName" class="form-label">Когда Вас ждать?</label>
+                <label for="lastName" class="form-label" id="appointment-date">Когда Вас ждать?</label>
                 <input type="hidden" class="form-control" name="date" id="airdatepicker">
               </div>
 
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Далее</button>
+              <div class="container-step">
+                <button class="btn btn-primary btn-lg btn-block" id="appointment-step1" type="submit">Далее</button>
+                <a href="{% url 'barbershop:barbershop' %}" id="a-step2">
+                    Вернуться на главную
+                </a>
+            </div>
+
             </form>
               {% endif %}
 
               {% if step_2 %}
-              <h4 class="mb-3">Ваш барбер: <b>{{ barber }}</b> ({{ message }})</h4>
+              <h4 class="mb-3">Ваш барбер: <b>{{ barber }}</b> {{ message }}</h4>
               {% if error_switch %}
               <a href="{% url 'appointment:appointment' %}" type="submit">Выбрать другую дату</a>
               {% else %}
@@ -70,7 +81,7 @@
                 {% csrf_token %}
                 <div class="col-md-7">
                     <label for="country" class="form-label">Выберите доступное время</label>
-                    <select class="form-select" id="time" name="time">
+                    <select class="form-select" id="appointment-time" name="time">
                       <option value=""></option>
                       {% for time in all_time %}
                       <option value="{{ time }}">{{ time }}</option>
@@ -110,12 +121,16 @@
               
                 <input type="hidden" name="barber_id"  
                     value="{{ barber_name.id }}">
+                <div class="container-step">
+                    <button class="btn btn-primary btn-lg btn-block" id="appointment-step2" type="submit">Оставить заявку</button>
+                    <a href="{% url 'appointment:appointment' %}" id="a-step2">
+                        Выбрать другую дату
+                    </a>
+                </div>
 
-                <a href="{% url 'appointment:appointment' %}">
-                    Выбрать другую дату
-                </a>
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Оставить заявку</button>
             </form>
+            
+
             {% endif %}
             {% endif %}
             </div>
@@ -124,7 +139,7 @@
       </div>
 
       <footer class="my-5 pt-5 text-muted text-center text-small" id="footer-appointment">
-        <p class="mb-1">© 2000–2023 BarberShop</p>
+        <p class="mb-1">© 1990–2023 BarberShop</p>
         <ul class="list-inline">
 
 

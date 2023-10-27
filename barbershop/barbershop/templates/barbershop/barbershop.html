@@ -36,10 +36,12 @@
         <div class="col-lg-6 col-md-12" id="product-col2"> 
           <h3>Услуга - цена</h3> 
           <ul class="list-group">
-            {% for price in price_list %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <b>{{ price.service }}</b>
-              <span class="badge bg-warning text-dark">{{ price.price }}₽</span>
+            {% for service in price_list %}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">{{ service.service }}</h6>
+              </div>
+              <span class="text-muted">{{ service.price }}₽</span>
             </li>
             {% endfor %}
            </ul>
@@ -52,16 +54,16 @@
 <!-- portfolio -->
 <section id="portfolio">
     <div class="container">
-            <h1 class="text-center">Наши работы</h1> 
-            <div class="row">
-                {% for port in portfolio %}
-                <div class="col-lg-3 col-md-4 col-6 thumb">
-                    <a data-fancybox="gallery" href="../../../media/portfolio/images/{{port.end_photo_title}}.jpg">
-                        <img class="img-fluid" src="{{ port.image_small.url }}" alt="Portfolio">
-                    </a>    
-                </div>
-                {% endfor %}
+        <h1 class="text-center">Наши работы</h1> 
+        <div class="row">
+            {% for port in portfolio %}
+            <div class="col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="gallery" href="../../../media/portfolio/images/{{port.end_photo_title}}.jpg">
+                    <img class="img-fluid" src="{{ port.image_small.url }}" alt="Portfolio">
+                </a>    
             </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 <hr id="hr"/>

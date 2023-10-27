@@ -39,11 +39,11 @@ def appointment(request):
 
         if not all_time:
             error_switch = True
-            message = 'Занят'
+            message = '(Занят)'
             
         else:
             error_switch = False
-            message = 'Свободен'
+            message = ''
 
         dict_obj = {
             'min_day_value': min_day_value,

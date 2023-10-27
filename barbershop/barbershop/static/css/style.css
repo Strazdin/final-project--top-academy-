@@ -134,6 +134,10 @@ hr {
     padding-top: 20px;
 }
 
+.list-group li{
+    background-color: Beige;
+}
+
 /* Portfolio */
 
 @import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
@@ -152,10 +156,6 @@ hr {
 
 .thumb {
     padding: 5px;
-}
-
-.list-group li{
-    background-color: Beige;
 }
 
 /* About */
@@ -181,4 +181,75 @@ hr {
 
 .mb-3{ 
   padding-top: 10px; 
+}
+
+/* .......... */
+/* appointment */
+/* .......... */
+
+#appointment-step1,
+#appointment-step2{
+    margin-top: 24px;
+}
+
+.h2{
+    padding-top: 0;
+}
+
+#appointment label{
+    font-size: 20px;
+}
+
+#appointment-date{
+    margin-top: 24px;
+}
+
+/* #appointment-content{
+    background-color: AntiqueWhite;
+} */
+#appointment-barber,
+#appointment-time,
+#service-appointment,
+#client-name,
+#client-phone{
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.form-label{
+    font-size: 20px;
+}
+
+#product-col3 ul{
+    list-style-type: none;
+    padding-top: 20px; 
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#product-col3 ul li{ 
+    padding: 7px;
+    background-color: rgb(249, 249, 244);
+}
+
+#appointment-baner img{ 
+    border-radius: 5px;
+    background-color: AntiqueWhite;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+#a-step2{
+    margin-left: 440px;
+}
+
+.container-step{
+    display: flex;
+    /* justify-content:space-between; */
+}
+
+.container-step a{
+    align-self:flex-end;
+
 }
