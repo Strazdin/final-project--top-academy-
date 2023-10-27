@@ -1,30 +1,21 @@
-/* .................. */
-@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
-.thumb img {
-    -webkit-filter: grayscale(0);
-    filter: none;
-    border-radius: 5px;
-    background-color: AntiqueWhite;
-    border: 1px solid #ddd;
-    padding: 5px;
-}
-
-.thumb img:hover {
-    -webkit-filter: grayscale(1);
-    filter: grayscale(1);
-}
-
-.thumb {
-    padding: 5px;
-}
-
-/* .................... */
+/* General */
 
 *{ 
     margin: 0; 
     padding: 0; 
     font-family: 'Roboto Condensed', sans-serif; 
 } 
+
+h1{
+    padding: 80px 0;
+}
+
+#barbers,
+#price,
+#portfolio,
+#about{
+    padding-bottom: 80px;
+}
   
 /* navbar */
   
@@ -87,6 +78,7 @@
 }
 
 /* barbers  */
+
 #banner-row img{ 
     border-radius: 5px;
     background-color: AntiqueWhite;
@@ -111,29 +103,10 @@
 } 
 #banner-col{ 
     padding-left: 20px; 
-} 
+}
 
-#service{ 
-    padding-top: 80px; 
-    padding-bottom: 80px; 
-} 
-  
-#service h1{ 
-    padding-bottom: 70px; 
-} 
-  
-  
-/* price-list */
-  
-/* #price{ 
-    padding-top: 80px; 
-    padding-bottom: 80px; 
-} 
-  
-#price h1{ 
-    padding-bottom: 70px; 
-}  */
-  
+/* Price-list */
+   
 #product-col2 ul{
     list-style-type: none;
     padding-top: 10px; 
@@ -144,36 +117,30 @@
 #product-col2 ul li{ 
     padding: 7px;
 }
-/* ......... */
 
-/* #appointment-step1{
-    padding-top: 80px; 
-    padding-bottom: 80px;
+/* Portfolio */
+
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
+.thumb img {
+    -webkit-filter: grayscale(0);
+    filter: none;
+    border-radius: 5px;
+    background-color: AntiqueWhite;
+    border: 1px solid #ddd;
+    padding: 5px;
 }
 
-#step1-col{
-    padding-top: 10px; 
-    padding-bottom: 10px;
+.thumb img:hover {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
 }
- */
-/* ......... */
-/* portfopio */
 
-/* #portfolio{
-    padding-top: 80px; 
-    padding-bottom: 80px;   
-} */
-/* about */
-  
-/* #about{ 
-    padding-top: 80px; 
-    padding-bottom: 80px; 
-} 
-  
-#about h1{ 
-    padding-bottom: 70px; 
-}  */
-  
+.thumb {
+    padding: 5px;
+}
+
+/* About */
+
 #about-col ul{ 
     padding-top: 50px; 
     padding-left: 50px; 
@@ -196,21 +163,6 @@
   padding-top: 10px; 
 }
 
-/* #service-appointment{
-    padding: 0;
-} */
-
 #footer-appointment a{
     text-decoration: none;
-}
-
-h1{
-padding: 80px 0;
-}
-
-#barbers,
-#price,
-#portfolio,
-#about{
-    padding-bottom: 80px;
 }
