@@ -1,13 +1,23 @@
 /* General */
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
 
 *{ 
     margin: 0; 
     padding: 0; 
-    font-family: 'Roboto Condensed', sans-serif; 
+    font-family: 'Roboto Condensed', sans-serif;
 } 
 
 h1{
     padding: 80px 0;
+    font-family: 'Playfair Display SC', serif;
+}
+
+h3{
+    font-family: 'Arimo', sans-serif;
+}
+
+hr {
+    margin: 0; 
 }
 
 #barbers,
@@ -15,8 +25,9 @@ h1{
 #portfolio,
 #about{
     padding-bottom: 80px;
+    background-color: AntiqueWhite; 
 }
-  
+
 /* navbar */
   
 .navbar-nav{ 
@@ -30,6 +41,7 @@ h1{
 } 
   
 .nav-item a{ 
+    font-family: 'Arimo', sans-serif;
     color: AntiqueWhite !important; 
 } 
   
@@ -51,7 +63,10 @@ h1{
 #navbar button{ 
     color: AntiqueWhite !important; 
 }
-  
+
+#banner #banner-col2 img{
+    background-color: AntiqueWhite;
+}
 /* banner */
   
 #banner-container{ 
@@ -67,21 +82,21 @@ h1{
 }
 
 #banner-container a.btn.btn-primary{
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Playfair Display SC', serif;
     padding: 15px 30px;
     font-size: 20px;
     font-weight:bold;
 }
 
-#banner-col{
-    font-family: 'Playfair Display SC', serif;
+#banner-col h3{
+    padding-left: 20px; 
 }
 
 /* barbers  */
 
 #banner-row img{ 
     border-radius: 5px;
-    background-color: AntiqueWhite;
+    background-color: rgb(138, 83, 10);
     border: 1px solid #ddd;
     padding: 5px;
 } 
@@ -93,17 +108,14 @@ h1{
     text-align: center; 
 }
   
-#banner-row a{ 
-    background-color: white !important; 
-    color: black !important; 
-    border: none; 
+#banner-row a{
+    background-color: LightSlateGray !important; 
+    color: AntiqueWhite  !important;
+    border: none;
     margin-left: 20px; 
     margin-top: 20px; 
       
 } 
-#banner-col{ 
-    padding-left: 20px; 
-}
 
 /* Price-list */
    
@@ -118,6 +130,10 @@ h1{
     padding: 7px;
 }
 
+#price h3{
+    padding-top: 20px;
+}
+
 /* Portfolio */
 
 @import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
@@ -125,8 +141,7 @@ h1{
     -webkit-filter: grayscale(0);
     filter: none;
     border-radius: 5px;
-    background-color: AntiqueWhite;
-    border: 1px solid #ddd;
+    background-color: rgb(252, 209, 153);
     padding: 5px;
 }
 
@@ -139,6 +154,10 @@ h1{
     padding: 5px;
 }
 
+.list-group li{
+    background-color: Beige;
+}
+
 /* About */
 
 #about-col ul{ 
@@ -149,11 +168,12 @@ h1{
 #about-col ul li{ 
     padding-top: 15px; 
       
-} 
+}
  
 /* footer */
-  
-#footer-col2 a{ 
+
+#footer-col2 a,
+#footer-col1 a{ 
     text-decoration: none;
     color: white !important; 
     background-color: #0a193d  !important; 
@@ -161,8 +181,4 @@ h1{
 
 .mb-3{ 
   padding-top: 10px; 
-}
-
-#footer-appointment a{
-    text-decoration: none;
 }
