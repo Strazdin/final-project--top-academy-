@@ -53,7 +53,7 @@
   
 #navbar button{ 
     color: white !important; 
-} 
+}
   
 /* banner */
   
@@ -67,6 +67,12 @@
 
 #banner-container a{
     margin-bottom: 40px;
+}
+
+#banner-container a.btn.btn-primary{
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight:bold;
 }
 
 /* barbers  */
