@@ -1,10 +1,10 @@
 /* .................. */
-
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
 .thumb img {
     -webkit-filter: grayscale(0);
     filter: none;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: AntiqueWhite;
     border: 1px solid #ddd;
     padding: 5px;
 }
@@ -39,20 +39,26 @@
 } 
   
 .nav-item a{ 
-    color: white !important; 
+    color: AntiqueWhite !important; 
 } 
   
 .nav-item{ 
     padding-left: 2px; 
 } 
   
-.navbar-brand{ 
-    color: white !important; 
+.navbar-brand{
+    font-family: 'Playfair Display SC', serif;
+    color: AntiqueWhite !important; 
     padding-left: 100px; 
-} 
+}
+
+#banner-col p{
+    font-family: 'Arimo', sans-serif;
+}
+  
   
 #navbar button{ 
-    color: white !important; 
+    color: AntiqueWhite !important; 
 }
   
 /* banner */
@@ -70,15 +76,20 @@
 }
 
 #banner-container a.btn.btn-primary{
+    font-family: 'Arimo', sans-serif;
     padding: 15px 30px;
     font-size: 20px;
     font-weight:bold;
 }
 
+#banner-col{
+    font-family: 'Playfair Display SC', serif;
+}
+
 /* barbers  */
 #banner-row img{ 
     border-radius: 5px;
-    background-color: #fff;
+    background-color: AntiqueWhite;
     border: 1px solid #ddd;
     padding: 5px;
 } 
