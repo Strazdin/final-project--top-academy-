@@ -1,5 +1,9 @@
 {% extends 'barbershop/base.html' %}
 {% load static %}
 {% block content %}
-<h1>Спасибо за заявку!</h1>
+<div id="thanks">
+    <h1 id="h1-thanks">Запись прошла успешно, {{name}}!</h1>
+    <h3 id="h3-thanks">Мы ждем вас {{day}} в {{time}} ч.</h3></3>
+</div>
+
 {% endblock %}

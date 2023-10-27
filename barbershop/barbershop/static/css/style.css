@@ -204,9 +204,6 @@ hr {
     margin-top: 24px;
 }
 
-/* #appointment-content{
-    background-color: AntiqueWhite;
-} */
 #appointment-barber,
 #appointment-time,
 #service-appointment,
@@ -252,4 +249,16 @@ hr {
 .container-step a{
     align-self:flex-end;
 
+}
+
+/* .......... */
+/* thanks */
+/* .......... */
+
+#h1-thanks{
+    font-family: 'Arimo', sans-serif;
+}
+
+#thanks{
+    text-align: center;
 }
