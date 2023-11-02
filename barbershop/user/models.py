@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from user.models import Profile
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -8,6 +9,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=200, blank=True, null=True, unique=True)
     profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True, default='profiles/user-default.png')
     created = models.DateTimeField(auto_now_add=True)
+    client = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f'{self.username}'
