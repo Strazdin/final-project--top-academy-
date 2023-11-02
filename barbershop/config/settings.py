@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'barbershop.apps.BarbershopConfig',
     'appointment.apps.AppointmentConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
