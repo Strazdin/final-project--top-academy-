@@ -1,13 +1,27 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
 {% load static %}
-
-<h1>Редактировать аккаунт</h1>
-
-<form action="{% url 'edit-account' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Редактировать">
-</form>
-<a href="{% url 'user_account' %}">Аккаунт</a>
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <h1>Редактировать аккаунт</h1>
+            <a class="backButton" href="{% url 'user_account' %}"><img src="{% static 'images/left.png' %}" alt="left"></a>
+            <br>
+            <form action="{% url 'edit-account' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- {{ form.as_p }} -->
+                {% for field in form %}
+                <div class="form__field">
+                    <label for="formInput#text">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <button class="btn btn-primary" type="submit">Редактировать</button>
+            <!-- 
+                <input type="submit" value="Редактировать"> -->
+            </form>
+            <!-- <a href="{% url 'user_account' %}">Аккаунт</a> -->
+        </div>
+    </div>
+</main>
 {% endblock %}

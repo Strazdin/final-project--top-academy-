@@ -290,19 +290,23 @@ hr {
   
   .alert.alert--error,
   .alert.alert--error > .alert__message {
+    padding: 0;
+    margin: 0;
     background-color: #fff2ee;
     color: #fc4b0b;
   }
   
   .alert.alert--success,
   .alert.alert--success > .alert__message {
+    padding: 0;
+    margin: 0;
     background-color: #def8e8;
     color: #359e64;
   }
   
   .alert > .alert__close {
     color:red;
-    padding-bottom: 1.75rem;
+    padding-bottom: 0.45rem;
     background: transparent;
     cursor: pointer;
     border: none;
@@ -332,19 +336,6 @@ hr {
     align-items: center;
     background: url(../barbershop/pattern.jpg);
   }
-  
-/*   .auth::after {
-    z-index: -1;
-    opacity: 0.1;
-    content: '';
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-  } */
   
   .auth > .card {
     border: 2px solid rgb(119, 115, 115);
@@ -400,3 +391,25 @@ hr {
     font-weight: 500;
     text-decoration: none;
   }
+/* .......... */
+/* account */
+/* .......... */
+
+.vh-100{
+    background: url(../barbershop/pattern.jpg);
+}
+.text-info{
+    padding: 0;
+    text-align: left;
+    color: darkred !important;
+}
+.gradient-custom {
+/* fallback for old browsers */
+background: #6865f6;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgb(155, 157, 252), rgb(89, 5, 233));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: -webkit-linear-gradient(to right bottom, rgb(155, 157, 252), rgb(89, 5, 233));
+}
