@@ -71,6 +71,7 @@ def thanks_page(request):
         time = request.POST['time']
         barber_id = request.POST['barber_id']
         service_id = Price.objects.get(service = request.POST['service']).id
+        user_id = request.POST['user_id']
 
         dict_obj = {
             'name': name,
@@ -83,7 +84,8 @@ def thanks_page(request):
                         day = day,
                         time = time,
                         barber_id = barber_id,
-                        service_id = service_id)
+                        service_id = service_id,
+                        client_id = user_id)
         element.save()
         return render(request, 'appointment/thanks.html', dict_obj)
     else:

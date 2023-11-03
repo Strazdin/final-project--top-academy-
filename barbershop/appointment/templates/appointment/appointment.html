@@ -121,6 +121,15 @@
               
                 <input type="hidden" name="barber_id"  
                     value="{{ barber_name.id }}">
+
+                  {% if user.is_authenticated %}
+                  <input type="hidden" name="user_id"  
+                  value="{{ user.id }}">
+                  {% else %}
+                  <input type="hidden" name="user_id"  
+                  value="{{ NULL }}">
+                  {% endif %}
+
                 <div class="container-step">
                     <button class="btn btn-primary btn-lg btn-block" id="appointment-step2" type="submit">Оставить заявку</button>
                     <a href="{% url 'appointment:appointment' %}" id="a-step2">
