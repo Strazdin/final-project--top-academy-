@@ -7,16 +7,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 # Create your views here.
 
-def profiles(request):
-    prof = Profile.objects.all()
-    context = {'profiles': prof}
-    return render(request, 'user/profile.html', context)
-
-def user_profile(request, pk):
-    prof = Profile.objects.get(id=pk)
-    context = {'profile': prof}
-    return render(request, 'user/profile.html', context)
-
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('/')
