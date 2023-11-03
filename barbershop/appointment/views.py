@@ -93,7 +93,7 @@ def thanks_page(request):
 
         count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
         message_discount = ''
-        print(count_appointments)
+        
         if count_appointments % 2 == 0:
             message_discount = "Эта стрижка для вас бесплатна!"
 
