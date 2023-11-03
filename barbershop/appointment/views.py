@@ -80,21 +80,31 @@ def thanks_page(request):
         service_id = Price.objects.get(service = request.POST['service']).id
         user_id = request.POST['user_id']
 
-        dict_obj = {
-            'name': name,
-            'day': day,
-            'time': time
-            }
-        
         element = Appointment(name = name,
                         phone = phone,
                         day = day,
                         time = time,
                         barber_id = barber_id,
                         service_id = service_id,
-                        client_id = user_id)
+                        client_id = user_id,
+                        )
         
         element.save()
+
+        count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
+        message_discount = ''
+        print(count_appointments)
+        if count_appointments % 2 == 0:
+            message_discount = "Эта стрижка для вас бесплатна!"
+
+        dict_obj = {
+            'name': name,
+            'day': day,
+            'time': time,
+            'message_discount': message_discount
+            }
+        
+
         return render(request, 'appointment/thanks.html', dict_obj)
     else:
         return render(request, 'appointment/thanks.html')

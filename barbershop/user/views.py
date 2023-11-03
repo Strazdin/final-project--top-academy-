@@ -58,6 +58,7 @@ def register_user(request):
 def user_account(request):
     count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
     prof = request.user.profile
+
     context = {
         'profile': prof,
         'count_appointments': count_appointments,
