@@ -322,7 +322,7 @@ hr {
   }
   
 /* .......... */
-/* Login/SignUp */
+/* login_register */
 /* .......... */
 
 .auth {
@@ -396,7 +396,7 @@ hr {
 /* .......... */
 
 .vh-100{
-    background: url(../barbershop/pattern.jpg);
+    background: url(../barbershop/pattern.jpg);    
 }
 .text-info{
     padding: 0;
@@ -413,3 +413,13 @@ background: -webkit-linear-gradient(to right bottom, rgb(155, 157, 252), rgb(89,
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 background: -webkit-linear-gradient(to right bottom, rgb(155, 157, 252), rgb(89, 5, 233));
 }
+
+/* .......... */
+/* profile-form */
+/* .......... */
+
+#profile_edit{
+    padding: 0;
+    font-family: sans-serif;
+}
+

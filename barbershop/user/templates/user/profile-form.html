@@ -1,27 +1,27 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
 {% load static %}
-<main class="formPage my-xl">
-    <div class="content-box">
-        <div class="formWrapper">
-            <h1>Редактировать аккаунт</h1>
-            <a class="backButton" href="{% url 'user_account' %}"><img src="{% static 'images/left.png' %}" alt="left"></a>
-            <br>
-            <form action="{% url 'edit-account' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <!-- {{ form.as_p }} -->
-                {% for field in form %}
-                <div class="form__field">
-                    <label for="formInput#text">{{ field.label }}:</label>
-                    {{ field }}
+<div class="auth">
+    <div class="card">
+        <h1 id="profile_edit">Редактировать аккаунт</h1>
+        <br>
+        <form action="{% url 'edit-account' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group row">
+            <label for="formInput#text">{{ field.label }}:</label>
+            <div class="col-sm-10">
+                {{ field }}
+            </div>
+            </div>
+            {% endfor %}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button class="btn btn-primary" type="submit">Редактировать</button>
                 </div>
-                {% endfor %}
-                <button class="btn btn-primary" type="submit">Редактировать</button>
-            <!-- 
-                <input type="submit" value="Редактировать"> -->
-            </form>
-            <!-- <a href="{% url 'user_account' %}">Аккаунт</a> -->
-        </div>
+            </div>
+        </form>
+        <a class="backButton" href="{% url 'user_account' %}">Вернуться на страницу профиля</a>
     </div>
-</main>
+</div>
 {% endblock %}
