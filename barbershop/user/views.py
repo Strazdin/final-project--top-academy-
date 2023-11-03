@@ -40,4 +40,4 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.error(request, 'Пользователь вышел из системы!')
-    return redirect('/')
+    return redirect('/user/login/')

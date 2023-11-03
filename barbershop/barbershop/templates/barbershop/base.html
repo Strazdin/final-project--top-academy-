@@ -12,12 +12,24 @@
     <link rel="stylesheet" href="../../static/css/jquery.fancybox.min.css">
     
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}">
 
     <title>BarberShop</title>
 </head>
 <body>
 
 {% include 'barbershop/navbar.html' %}
+
+{% if messages %}
+{% for message in messages %}
+<div style="text-align: center;">
+  <div class="alert alert--{{ message.tags }}" id="pop">
+    <p class="alert__message">{{ message }}</p>
+    <button class="alert__close" onclick="del()">x</button>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
 
     {% block content %}
     {% endblock %}
@@ -31,5 +43,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- fancyBox -->
 <script src="../../static/js/jquery.fancybox.min.js"></script>
+<!-- script-del -->
+<script src="../../static/js/script-del.js"></script>
 </body>
 </html>
