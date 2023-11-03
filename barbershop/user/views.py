@@ -46,11 +46,11 @@ def register_user(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            messages.success(request, 'User account was created!')
+            messages.success(request, 'Учетная запись пользователя создана!')
             login(request, user)
             return redirect('/')
         else:
-            messages.error(request, 'An error has occurred during registration!')
+            messages.error(request, 'Во время регистрации произошла ошибка!')
     context = {'page': page, 'form': form}
     return render(request, 'user/login_register.html', context)
 
