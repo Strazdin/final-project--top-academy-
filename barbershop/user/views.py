@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import Profile, User
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, ProfileForm
+
+from appointment.models import Appointment
 # Create your views here.
 
 def login_user(request):
@@ -54,9 +56,11 @@ def register_user(request):
 
 @login_required(login_url='login')
 def user_account(request):
+    count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
     prof = request.user.profile
     context = {
         'profile': prof,
+        'count_appointments': count_appointments,
     }
     return render(request, 'user/account.html', context)
 
