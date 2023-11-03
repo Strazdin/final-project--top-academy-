@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, User
 # Create your views here.
 
 def profiles(request):
