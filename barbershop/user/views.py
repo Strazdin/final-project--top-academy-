@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from .models import Profile, User
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 # Create your views here.
 
 def login_user(request):
@@ -59,3 +59,17 @@ def user_account(request):
         'profile': prof,
     }
     return render(request, 'user/account.html', context)
+
+@login_required(login_url='login')
+def edit_account(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+
+            return redirect('user_account')
+    context = {'form': form}
+    return render(request, 'user/profile-form.html', context)
