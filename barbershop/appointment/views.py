@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Appointment
 from barbershop.models import Barbers, Price
+from user.models import Profile
 from datetime import datetime, timedelta
 
 def appointment(request):
@@ -34,6 +35,11 @@ def appointment(request):
 
         barber_name = Barbers.objects.get(barber_name=barber)
 
+        client = ''
+
+        if request.user.is_authenticated == True:
+            client = Profile.objects.get(username=request.user.username)
+
         for obj in appointments:
             all_time.remove(obj.time.strftime("%H:%M"))
 
@@ -58,7 +64,8 @@ def appointment(request):
             'step': 'Шаг 2',
             'choised_day': request.GET.get('date'),
             'message': message,
-            'error_switch': error_switch
+            'error_switch': error_switch,
+            'client': client
             }
         
         return render(request, 'appointment/appointment.html', dict_obj)
@@ -86,6 +93,7 @@ def thanks_page(request):
                         barber_id = barber_id,
                         service_id = service_id,
                         client_id = user_id)
+        
         element.save()
         return render(request, 'appointment/thanks.html', dict_obj)
     else:

@@ -102,14 +102,22 @@
                 <div class="col-12">
                     <label for="username" class="form-label">Введите ваше имя</label>
                     <div class="input-group">
+                      {% if user.is_authenticated %}
+                      <input type="text" class="form-control" id="client-name" placeholder="Ваше имя" name="name" value="{{ client.name }}"  readonly>
+                      {% else %}
                       <input type="text" class="form-control" id="client-name" placeholder="Ваше имя" name="name">
+                      {% endif %}
                 </div>
               </div>
 
               <div class="col-12">
                     <label for="username" class="form-label">Введите ваш номер телефона</label>
                     <div class="input-group">
+                      {% if user.is_authenticated %}
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone" value="{{ client.phone_number }}" readonly>
+                      {% else %}
                       <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
+                      {% endif %}
                 </div>
               </div>
 
