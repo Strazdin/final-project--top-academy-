@@ -3,6 +3,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from .models import Profile, User
+from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 # Create your views here.
 
@@ -60,3 +61,11 @@ def register_user(request):
             messages.error(request, 'An error has occurred during registration!')
     context = {'page': page, 'form': form}
     return render(request, 'user/login_register.html', context)
+
+@login_required(login_url='login')
+def user_account(request):
+    prof = request.user.profile
+    context = {
+        'profile': prof,
+    }
+    return render(request, 'user/account.html', context)
