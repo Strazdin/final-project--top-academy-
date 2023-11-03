@@ -1,13 +1,78 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
 {% load static %}
-<h3>Аккаунт</h3>
+{% if page == 'register' %}
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <h3>Регистрация аккаунта</h3>
+      </div>
 
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="login">  
-</form>
+      <form action="{% url 'register' %}" method="post" class="form auth__form">
+        {% csrf_token %}
+        {% for field in form  %}
+        <div class="form__field">
+          <label for="formInput#text">{{ field.label }}</label>
+            {{ field }}
 
+            {% for error in field.errors %}
+              <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="auth__actions">
+            <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+          <!-- <input class="btn btn--sub btn--lg" type="submit" value="Зарегистрироваться" /> -->
+        </div>
+      </form>
+      <div class="auth__alternative">
+        <p>У вас уже есть учетная запись?</p>
+        <a href="{% url 'login' %}">Авторизоваться</a>
+      </div>
+    </div>
+  </div>
+
+{% else %}
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <h3>Вход в аккаунт</h3>
+      </div>
+
+      <form action="{% url 'login' %}" method="post" class="form auth__form">
+        {% csrf_token %}
+        <div class="form__field">
+          <label for="formInput#text">Имя пользователя: </label>
+          <input
+            class="input input--text"
+            id="formInput#text"
+            type="text"
+            name="username"
+            placeholder="Enter your username..."
+          />
+        </div>
+
+        <div class="form__field">
+          <label for="formInput#password">Пароль: </label>
+          <input
+            class="input input--password"
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="auth__actions">
+          <button class="btn btn-primary" type="submit">Войти</button>
+          <!-- <input class="btn btn--sub btn--lg" type="submit" value="Войти" /> -->
+        </div>
+        </form>
+        <div class="auth__alternative">
+            <p>У вас нет учетной записи?</p>
+            <a href="{% url 'register' %}">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
