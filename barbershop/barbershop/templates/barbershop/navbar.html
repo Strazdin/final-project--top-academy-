@@ -1,4 +1,5 @@
 {% load static %}
+<!-- navbar -->
 <section id="navbar"> 
     <nav class="navbar navbar-expand-lg navbar-light"> 
       <div class="container-fluid"> 
@@ -63,7 +64,18 @@
         </div> 
       </div> 
     </nav> 
-</section> 
+</section>
+<!-- message --> 
+{% if messages %}
+{% for message in messages %}
+<div style="text-align: center;">
+  <div class="alert alert--{{ message.tags }}" id="pop">
+    <p class="alert__message">{{ message }}</p>
+    <button class="alert__close" onclick="del()">x</button>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
 <!-- banner -->
 <section id="banner"> 
     <div class="container-fluid" id="banner-container"> 

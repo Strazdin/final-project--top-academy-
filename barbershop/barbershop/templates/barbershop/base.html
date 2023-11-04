@@ -19,17 +19,6 @@
 
 {% include 'barbershop/navbar.html' %}
 
-{% if messages %}
-{% for message in messages %}
-<div style="text-align: center;">
-  <div class="alert alert--{{ message.tags }}" id="pop">
-    <p class="alert__message">{{ message }}</p>
-    <button class="alert__close" onclick="del()">x</button>
-  </div>
-</div>
-{% endfor %}
-{% endif %}
-
     {% block content %}
     {% endblock %}
 

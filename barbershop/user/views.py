@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Profile, User
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, ProfileForm
+from django.core.exceptions import ValidationError
 
 from appointment.models import Appointment
 
@@ -45,7 +46,6 @@ def register_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.username = user.username#.lower()
             user.save()
             messages.success(request, 'Учетная запись пользователя создана!')
             login(request, user)
@@ -75,17 +75,21 @@ def edit_account(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
 
         if form.is_valid():
-            if form.cleaned_data['phone_number'].isdigit() and len(form.cleaned_data['phone_number']) == 10:
-                if form.cleaned_data['name'].isalpha() and len(form.cleaned_data['name']) >= 2:
+            if form.cleaned_data['phone_number'] and form.cleaned_data['phone_number'].isdigit() and len(form.cleaned_data['phone_number']) == 10:
+                if form.cleaned_data['name'] and form.cleaned_data['name'].isalpha() and len(form.cleaned_data['name']) >= 2:         
                     profile = form.save(commit=False)
                     profile.name = form.cleaned_data['name'].capitalize()
                     profile.save()
+                    messages.success(request, 'Редактирование профиля прошло успешно!')
+                    return redirect('user_account')
                 else:
                     messages.error(request, 'Имя должно состоять только из букв')
             else:
                 messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+        else:
+            messages.error(request, 'Никнейм и телефон должны быть уникальны!')
 
 
-            return redirect('user_account')
+        return redirect('edit-account')
     context = {'form': form}
     return render(request, 'user/profile-form.html', context)
