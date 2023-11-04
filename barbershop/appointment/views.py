@@ -85,47 +85,79 @@ def thanks_page(request):
         barber_id = request.POST['barber_id']
         user_id = request.POST['user_id']
         service = request.POST['service']
-        if time and service:
-            if phone.isdigit() and len(phone) == 10:
-                if name.isalpha() and len(name) >= 2:
-                    service_id = Price.objects.get(service = service).id
-                    name = name.capitalize()
 
-                    element = Appointment(name = name,
-                                    phone = phone,
-                                    day = day,
-                                    time = time,
-                                    barber_id = barber_id,
-                                    service_id = service_id,
-                                    client_id = user_id,
-                                    )
-                    
-                    element.save()
+        if request.user.is_authenticated == True:
+            if time and service:
+                service_id = Price.objects.get(service = service).id
 
-                    count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
-                    message_discount = ''
-                    
-                    if count_appointments % 2 == 0:
-                        message_discount = "Эта стрижка для вас бесплатна!"
+                element = Appointment(name = name,
+                phone = phone,
+                day = day,
+                time = time,
+                barber_id = barber_id,
+                service_id = service_id,
+                client_id = user_id,
+                )
 
-                    dict_obj = {
-                        'name': name,
-                        'day': day,
-                        'time': time,
-                        'message_discount': message_discount
-                        }
-                    
+                element.save()
 
-                    return render(request, 'appointment/thanks.html', dict_obj)
+                count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
+                message_discount = ''
+                
+                if count_appointments % 2 == 0:
+                    message_discount = "Эта стрижка для вас бесплатна!"
+
+                dict_obj = {
+                    'name': name,
+                    'day': day,
+                    'time': time,
+                    'message_discount': message_discount
+                    }
+                
+                return render(request, 'appointment/thanks.html', dict_obj)
+
+            else:
+                messages.error(request, 'Выберите время и стрижку')
+                return render(request, 'barbershop/barbershop.html')
+
+        else:
+            if time and service:
+                if phone.isdigit() and len(phone) == 10:
+                    if name.isalpha() and len(name) >= 2:
+                        service_id = Price.objects.get(service = service).id
+                        name = name.capitalize()
+                        phone = '+7 %s %s-%s-%s' %(phone[0:3],phone[3:6],phone[6:8], phone[8:10])
+
+                        element = Appointment(name = name,
+                                        phone = phone,
+                                        day = day,
+                                        time = time,
+                                        barber_id = barber_id,
+                                        service_id = service_id,
+                                        client_id = user_id,
+                                        )
+                        
+                        element.save()
+
+                        message_discount = ''
+
+                        dict_obj = {
+                            'name': name,
+                            'day': day,
+                            'time': time,
+                            'message_discount': message_discount
+                            }
+                        
+                        return render(request, 'appointment/thanks.html', dict_obj)
+                    else:
+                        messages.error(request, 'Имя должно состоять только из букв')
+                        return render(request, 'barbershop/barbershop.html')
                 else:
-                    messages.error(request, 'Имя должно состоять только из букв')
+                    messages.error(request, 'Номер телефона должен состоять из 10 цифр')
                     return render(request, 'barbershop/barbershop.html')
             else:
-                messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+                messages.error(request, 'Выберите время и стрижку')
                 return render(request, 'barbershop/barbershop.html')
-        else:
-            messages.error(request, 'Выберите время и стрижку')
-            return render(request, 'barbershop/barbershop.html')
     else:
         # return render(request, 'appointment/thanks.html')
         pass
