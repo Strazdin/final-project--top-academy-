@@ -51,7 +51,7 @@
               <div class="col-md-7">
                 <label for="country" class="form-label">Выберите барбера</label>
                 <select class="form-select" id="appointment-barber" name="barber">
-                  <option value="">...</option>
+                  <option value=""></option>
                   {% for barber_name in barber_names %}
                   <option value="{{ barber_name }}">{{ barber_name }}</option>
                   {% endfor %}
@@ -151,8 +151,6 @@
                 </div>
 
             </form>
-            
-
             {% endif %}
             {% endif %}
             </div>

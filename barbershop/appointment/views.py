@@ -3,6 +3,7 @@ from .models import Appointment
 from barbershop.models import Barbers, Price
 from user.models import Profile
 from datetime import datetime, timedelta
+from django.contrib import messages
 import re
 
 def appointment(request):
@@ -31,10 +32,14 @@ def appointment(request):
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
+        date = request.GET.get('date')
 
-        appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
-
-        barber_name = Barbers.objects.get(barber_name=barber)
+        if barber and date:
+            appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
+            barber_name = Barbers.objects.get(barber_name=barber)
+        else:
+            messages.error(request, 'Выберите барбера и дату')
+            return render(request, 'barbershop/barbershop.html')
 
         client = ''
 
@@ -78,35 +83,49 @@ def thanks_page(request):
         day = request.POST['date']
         time = request.POST['time']
         barber_id = request.POST['barber_id']
-        service_id = Price.objects.get(service = request.POST['service']).id
         user_id = request.POST['user_id']
+        service = request.POST['service']
+        if time and service:
+            if phone.isdigit() and len(phone) == 10:
+                if name.isalpha() and len(name) >= 2:
+                    service_id = Price.objects.get(service = service).id
+                    name = name.capitalize()
 
+                    element = Appointment(name = name,
+                                    phone = phone,
+                                    day = day,
+                                    time = time,
+                                    barber_id = barber_id,
+                                    service_id = service_id,
+                                    client_id = user_id,
+                                    )
+                    
+                    element.save()
 
-        element = Appointment(name = name,
-                        phone = phone,
-                        day = day,
-                        time = time,
-                        barber_id = barber_id,
-                        service_id = service_id,
-                        client_id = user_id,
-                        )
-        
-        element.save()
+                    count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
+                    message_discount = ''
+                    
+                    if count_appointments % 2 == 0:
+                        message_discount = "Эта стрижка для вас бесплатна!"
 
-        count_appointments = Appointment.objects.filter(client_id=request.user.id).count()
-        message_discount = ''
-        
-        if count_appointments % 2 == 0:
-            message_discount = "Эта стрижка для вас бесплатна!"
+                    dict_obj = {
+                        'name': name,
+                        'day': day,
+                        'time': time,
+                        'message_discount': message_discount
+                        }
+                    
 
-        dict_obj = {
-            'name': name,
-            'day': day,
-            'time': time,
-            'message_discount': message_discount
-            }
-        
-
-        return render(request, 'appointment/thanks.html', dict_obj)
+                    return render(request, 'appointment/thanks.html', dict_obj)
+                else:
+                    messages.error(request, 'Имя должно состоять только из букв')
+                    return render(request, 'barbershop/barbershop.html')
+            else:
+                messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+                return render(request, 'barbershop/barbershop.html')
+        else:
+            messages.error(request, 'Выберите время и стрижку')
+            return render(request, 'barbershop/barbershop.html')
     else:
-        return render(request, 'appointment/thanks.html')
+        # return render(request, 'appointment/thanks.html')
+        pass
