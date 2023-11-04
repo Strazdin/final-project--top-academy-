@@ -4,7 +4,6 @@ from barbershop.models import Barbers, Price
 from user.models import Profile
 from datetime import datetime, timedelta
 from django.contrib import messages
-import re
 
 def appointment(request):
     all_time = ['08:00', '09:00', '10:00', '11:00',

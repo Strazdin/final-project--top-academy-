@@ -89,11 +89,16 @@
                 «BarberShop» – стрижем и бреем
             </p> 
 
-            <div class="d-grid gap-2 d-md-flex justify-content-center"> 
-            <a class="btn btn-primary"
-                href="{% url 'appointment:appointment' %}" 
-                role="button">Записаться</a> 
-            </div> 
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+              {% if request.user.is_superuser %} 
+              <p>Admin</p>
+            </div>
+            {% else %}
+              <a class="btn btn-primary"
+              href="{% url 'appointment:appointment' %}" 
+              role="button">Записаться</a> 
+        </div>
+            {% endif %}
         </div> 
         <div class="col-md-6" id="banner-col2"> 
             <img
