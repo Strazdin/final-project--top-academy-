@@ -1,5 +1,6 @@
 {% extends 'barbershop/base.html' %}
 {% block content %}
+{% load phonenumber %}
 <section class="vh-100" style="background-color: #f4f5f7; ">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Телефон</h6>
-                      <p class="text-info">{{ profile.phone_number }}</p>
+                      <p class="text-info">{{ profile.phone_number|phonenumber }}</p>
                     </div>
                   </div>
                   <h6>Статистика</h6>
