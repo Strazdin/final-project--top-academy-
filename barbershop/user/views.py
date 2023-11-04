@@ -76,7 +76,9 @@ def edit_account(request):
         if form.is_valid():
             if form.cleaned_data['phone_number'].isdigit() and len(form.cleaned_data['phone_number']) == 10:
                 if form.cleaned_data['name'].isalpha() and len(form.cleaned_data['name']) >= 2:
-                    form.save()
+                    profile = form.save(commit=False)
+                    profile.name = form.cleaned_data['name'].capitalize()
+                    profile.save()
                 else:
                     messages.error(request, 'Имя должно состоять только из букв')
             else:
