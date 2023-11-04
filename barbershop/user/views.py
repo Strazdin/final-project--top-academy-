@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, ProfileForm
 
 from appointment.models import Appointment
+
 # Create your views here.
 
 def login_user(request):

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'appointment.apps.AppointmentConfig',
     'user.apps.UserConfig',
 
-    'django_cleanup.apps.CleanupConfig'
+    'django_cleanup.apps.CleanupConfig',#удаление старых изображений
 ]
 
 MIDDLEWARE = [
