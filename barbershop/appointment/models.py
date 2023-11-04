@@ -5,7 +5,7 @@ from user.models import Profile
 class Appointment(models.Model):
     dt = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=20, verbose_name="Имя")
-    phone = models.CharField(max_length=10, verbose_name="Телефон")
+    phone = models.CharField(max_length=20, verbose_name="Телефон")
     day = models.DateField(verbose_name="День")
     time = models.TimeField(verbose_name="Время")
     barber = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True, verbose_name="Барбер")

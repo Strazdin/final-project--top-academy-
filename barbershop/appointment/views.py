@@ -3,6 +3,7 @@ from .models import Appointment
 from barbershop.models import Barbers, Price
 from user.models import Profile
 from datetime import datetime, timedelta
+import re
 
 def appointment(request):
     all_time = ['08:00', '09:00', '10:00', '11:00',
@@ -79,6 +80,7 @@ def thanks_page(request):
         barber_id = request.POST['barber_id']
         service_id = Price.objects.get(service = request.POST['service']).id
         user_id = request.POST['user_id']
+
 
         element = Appointment(name = name,
                         phone = phone,

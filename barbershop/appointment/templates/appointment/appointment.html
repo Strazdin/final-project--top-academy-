@@ -115,7 +115,11 @@
                     <label for="username" class="form-label">Введите ваш номер телефона</label>
                     <div class="input-group">
                       {% if user.is_authenticated %}
+                      {% if client.phone_number is null %}
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
+                      {% else %}
                       <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone" value="{{ client.phone_number|phonenumber }}" readonly>
+                      {% endif %}
                       {% else %}
                       <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
                       {% endif %}

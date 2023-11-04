@@ -25,7 +25,11 @@
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Телефон</h6>
+                      {% if profile.phone_number is null %}
+                      <p class="text-info">Не указан</p>
+                      {% else %}
                       <p class="text-info">{{ profile.phone_number|phonenumber }}</p>
+                      {% endif %}
                     </div>
                   </div>
                   <h6>Статистика</h6>
