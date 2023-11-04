@@ -8,7 +8,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'password1', 'password2']
 
-        labels = {#название поля будет отображаться как Name в html а не first_name
+        labels = {
             'username': 'Никнейм',
             'first_name': 'Ваше имя'
         }
@@ -22,6 +22,6 @@ class ProfileForm(ModelForm):
         labels = {
             'username': 'Никнейм',
             'name': 'Ваше имя',
-            'phone_number': 'Номер телефона',
+            'phone_number': 'Номер телефона (10 цифр)',
             'profile_image': 'Фото профиля'
         }

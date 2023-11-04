@@ -72,8 +72,15 @@ def edit_account(request):
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
+
         if form.is_valid():
-            form.save()
+            if form.cleaned_data['phone_number'].isdigit():
+                if len(form.cleaned_data['phone_number']) == 10:
+                    form.save()
+                else:
+                    messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+            else:
+                messages.error(request, 'Номер телефона должен состоять из цифр')
 
             return redirect('user_account')
     context = {'form': form}
