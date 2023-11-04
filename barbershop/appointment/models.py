@@ -4,12 +4,12 @@ from user.models import Profile
 
 class Appointment(models.Model):
     dt = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50, verbose_name="Имя")
-    phone = models.CharField(max_length=50, verbose_name="Телефон")
+    name = models.CharField(max_length=20, verbose_name="Имя")
+    phone = models.CharField(max_length=10, verbose_name="Телефон")
     day = models.DateField(verbose_name="День")
     time = models.TimeField(verbose_name="Время")
     barber = models.ForeignKey(Barbers, on_delete=models.CASCADE, null=True, verbose_name="Барбер")
-    service = models.ForeignKey(Price, on_delete=models.SET_NULL, max_length=250, null=True, verbose_name="Услуга")
+    service = models.ForeignKey(Price, on_delete=models.SET_NULL, max_length=100, null=True, verbose_name="Услуга")
     client = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Клиент")
 
     def __sts__(self):

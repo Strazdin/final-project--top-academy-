@@ -74,13 +74,14 @@ def edit_account(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
 
         if form.is_valid():
-            if form.cleaned_data['phone_number'].isdigit():
-                if len(form.cleaned_data['phone_number']) == 10:
+            if form.cleaned_data['phone_number'].isdigit() and len(form.cleaned_data['phone_number']) == 10:
+                if form.cleaned_data['name'].isalpha() and len(form.cleaned_data['name']) >= 2:
                     form.save()
                 else:
-                    messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+                    messages.error(request, 'Имя должно состоять только из букв')
             else:
-                messages.error(request, 'Номер телефона должен состоять из цифр')
+                messages.error(request, 'Номер телефона должен состоять из 10 цифр')
+
 
             return redirect('user_account')
     context = {'form': form}
