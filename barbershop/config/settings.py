@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'barbershop.apps.BarbershopConfig',
     'appointment.apps.AppointmentConfig',
     'user.apps.UserConfig',
+
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
