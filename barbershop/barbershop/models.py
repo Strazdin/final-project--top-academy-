@@ -32,5 +32,5 @@ class Portfolio(models.Model):
     barber = models.ForeignKey(Barbers, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Барбер")
 
     class Meta:
-        verbose_name = 'Фото мастера'
-        verbose_name_plural = 'Фото мастеров'
+        verbose_name = 'Портфолио'
+        verbose_name_plural = 'Портфолио'

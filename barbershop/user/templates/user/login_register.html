@@ -66,6 +66,9 @@
           <button class="btn btn-primary btn-lg" type="submit">Войти</button>
         </div>
         </form>
+        <a href="{% url 'barbershop:barbershop' %}" id="login_back">
+          Вернуться на главную
+      </a>
         <div class="auth__alternative">
             <p>У вас нет учетной записи?</p>
             <a href="{% url 'register' %}">Зарегистрироваться</a>
