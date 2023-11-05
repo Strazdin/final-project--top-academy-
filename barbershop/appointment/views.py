@@ -1,9 +1,18 @@
 from django.shortcuts import render
 from .models import Appointment
-from barbershop.models import Barbers, Price
+from barbershop.models import Barbers, Price, Tag
 from user.models import Profile
 from datetime import datetime, timedelta
 from django.contrib import messages
+
+def appointment_barber(request):
+    barber_names = Barbers.objects.all()
+
+    dict_obj = {
+            'barber_names': barber_names,
+            }
+
+    return render(request, 'appointment/appointment_barber.html', dict_obj)
 
 def appointment(request):
     all_time = ['08:00', '09:00', '10:00', '11:00',
@@ -12,32 +21,55 @@ def appointment(request):
     
     yesterday = datetime.today()
     min_day_value = yesterday.strftime("%Y-%m-%d")
-    max_day_value = yesterday + timedelta(days=7)
+    max_day_value = yesterday + timedelta(days=14)
     max_day_value = max_day_value.strftime("%Y-%m-%d") 
-    barber_names = Barbers.objects.all()
     price_list = Price.objects.all()
-            
+
+
+
     if request.GET.get('date') is None:
-        dict_obj = {
-            'min_day_value': min_day_value,
-            'max_day_value': max_day_value,
-            'all_time': all_time,
-            'barber_names': barber_names,
-            'step_1': True,
-            'step_2': False,
-            'step': 'Шаг 1'
-            }
+        barber = request.POST['barber']
+
+        if barber:
+            days = Barbers.objects.get(barber_name=barber).tag_set.all()
+            days_list = []
+            for obj in days:
+                days_list.append(int(obj.days))
+            print(days_list)
+            list_holiday = ['Воскресенье', 'Понедельник','Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+            list_holiday2 = []
+            for i in range(len(list_holiday)):
+                for day in days_list:
+                    if i == day:
+                        list_holiday2.append(list_holiday[i])
+            print(list_holiday2)
+        
+            dict_obj = {
+                'min_day_value': min_day_value,
+                'max_day_value': max_day_value,
+                'all_time': all_time,
+                'barber': barber,
+                'step_1': True,
+                'step_2': False,
+                'step': 'Шаг 1',
+                'days_list': days_list,
+                'list_holiday2': list_holiday2,
+                }
+        else:
+            messages.error(request, 'Выберите барбера')
+            return render(request, 'barbershop/barbershop.html')
         
         return render(request, 'appointment/appointment.html', dict_obj)
     else:
         barber = request.GET.get('barber')
+        print(barber)
         date = request.GET.get('date')
 
         if barber and date:
             appointments = Appointment.objects.filter(day=request.GET.get('date'), barber_id=Barbers.objects.get(barber_name=barber).id).all()
             barber_name = Barbers.objects.get(barber_name=barber)
         else:
-            messages.error(request, 'Выберите барбера и дату')
+            messages.error(request, 'Выберите дату')
             return render(request, 'barbershop/barbershop.html')
 
         client = ''
@@ -60,7 +92,6 @@ def appointment(request):
             'min_day_value': min_day_value,
             'max_day_value': max_day_value,
             'all_time': all_time,
-            'barber_names': barber_names,
             'barber': request.GET.get('barber'),
             'barber_name': barber_name,
             'price_list': price_list,

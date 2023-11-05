@@ -48,15 +48,16 @@
                 
               {% if step_1 %}
               <form>
-              <div class="col-md-7">
-                <label for="country" class="form-label">Выберите барбера</label>
-                <select class="form-select" id="appointment-barber" name="barber">
-                  <option value="">...</option>
-                  {% for barber_name in barber_names %}
-                  <option value="{{ barber_name }}">{{ barber_name }}</option>
-                  {% endfor %}
-                </select>
+              <h4 class="mb-3">Ваш барбер: <b>{{ barber }}</b></h4>
+              <h5>Выходные дни барбера:</h5>
+              {% for day in list_holiday2 %}
+              <div class="box" id="box-holiday">
+                <p>{{day}}</p>
               </div>
+
+              {% endfor %}
+              <input type="hidden" name="barber"  
+              value="{{ barber }}"> 
     
               <div class="col-sm-6">
                 <label for="lastName" class="form-label" id="appointment-date">Когда Вас ждать?</label>
@@ -65,8 +66,8 @@
 
               <div class="container-step">
                 <button class="btn btn-primary btn-lg btn-block" id="appointment-step1" type="submit">Далее</button>
-                <a href="{% url 'barbershop:barbershop' %}" id="a-step2">
-                    Вернуться на главную
+                <a href="{% url 'appointment:appointment-barber' %}" id="a-step2">
+                    Перевыбрать барбера
                 </a>
             </div>
 
@@ -116,12 +117,12 @@
                     <div class="input-group">
                       {% if user.is_authenticated %}
                       {% if client.phone_number is null %}
-                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш номер (10 цифр без 8)" name="phone">
                       {% else %}
-                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone" value="{{ client.phone_number|phonenumber }}" readonly>
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш номер (10 цифр без 8)" name="phone" value="{{ client.phone_number|phonenumber }}" readonly>
                       {% endif %}
                       {% else %}
-                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш телефон" name="phone">
+                      <input type="text" class="form-control" id="client-phone" placeholder="Ваш номер (10 цифр без 8)" name="phone">
                       {% endif %}
                 </div>
               </div>
@@ -169,12 +170,12 @@
         </ul>
       </footer>
     </div>
-
+  
     <script src="{% static 'js/air-datepicker.js' %}"></script>
     <script>
         let minDate = "{{ min_day_value }}"; 
         let maxDate = "{{ max_day_value }}";
-        var disabledDays = [0, 6];
+        var disabledDays = "{{ days_list }}";
 
 
         new AirDatepicker('#airdatepicker', {

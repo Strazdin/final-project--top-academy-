@@ -34,3 +34,24 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name = 'Портфолио'
         verbose_name_plural = 'Портфолио'
+
+class Tag(models.Model):
+    DAYS = (
+    ('0', 'Воскресенье'),
+    ('1', 'Понедельник'),
+    ('2', 'Вторник'),
+    ('3', 'Среда'),
+    ('4', 'Четверг'),
+    ('5', 'Пятница'),
+    ('6', 'Суббота'),
+    )
+
+    days = models.CharField(max_length=1, choices=DAYS, verbose_name="День недели")
+    barberss = models.ManyToManyField('Barbers', blank=True, verbose_name="Барбер")
+
+    def __str__(self):
+        return self.days
+    
+    class Meta:
+        verbose_name = 'Выходные'
+        verbose_name_plural = 'Выходные'

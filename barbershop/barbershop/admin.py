@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Barbers, Price, Portfolio
+from .models import Barbers, Price, Portfolio, Tag
 
 class BarbersAdmin(admin.ModelAdmin):
     list_display = ('id', 'barber_name', 'created')
@@ -18,3 +18,4 @@ class PorfolioAdmin(admin.ModelAdmin):
 admin.site.register(Barbers, BarbersAdmin)
 admin.site.register(Price, PriceAdmin)
 admin.site.register(Portfolio, PorfolioAdmin)
+admin.site.register(Tag)
